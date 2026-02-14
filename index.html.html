@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Valentine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+            color: #1f1f1f;
+            background: linear-gradient(180deg, #f9c1d0, #f5a6c1, #f7b0c8);
+            animation: bgMove 15s ease-in-out infinite alternate;
+        }
+        /* background animation */
+        
+        @keyframes bgMove {
+            0% {
+                background: linear-gradient(180deg, #f9c1d0, #f5a6c1, #f7b0c8);
+            }
+            50% {
+                background: linear-gradient(180deg, #f7b0c8, #f9c1d0, #f5a6c1);
+            }
+            100% {
+                background: linear-gradient(180deg, #f5a6c1, #f7b0c8, #f9c1d0);
+            }
+        }
+        /* floating emojis */
+        
+        .floating-emoji {
+            position: fixed;
+            font-size: 50px;
+            opacity: 0.7;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 12px rgba(255, 0, 0, 0.6);
+            z-index: 100;
+            animation: twinkle 3s infinite alternate;
+        }
+        
+        @keyframes twinkle {
+            0% {
+                opacity: 0.5;
+                transform: scale(0.9);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+        }
+        /* sections */
+        
+        .section {
+            min-height: 100vh;
+            padding: 70px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            margin-bottom: 40px;
+        }
+        /* buttons */
+        
+        .buttons {
+            margin-top: 40px;
+            position: relative;
+            width: 280px;
+            height: 60px;
+        }
+        
+        button {
+            background: none;
+            border: 1px solid #1f1f1f;
+            padding: 12px 28px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 30px;
+            position: absolute;
+        }
+        
+        .yes {
+            left: 0;
+        }
+        
+        .no {
+            right: 0;
+        }
+        /* photo blocks */
+        
+        .photo-block {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 30px;
+            opacity: 0;
+            transform: translateX(-150px) scale(0.95);
+            transition: all 1.2s ease-out;
+            margin-bottom: 100px;
+        }
+        
+        .photo-block.active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+        
+        .photo-block img {
+            width: 45%;
+            border-radius: 22px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+        
+        .caption {
+            text-align: left;
+            font-size: 1.05rem;
+            opacity: .95;
+            line-height: 1.4;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        }
+        /* letter and Valentine line at end */
+        
+        #valentineEnd {
+            padding: 40px 24px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        #valentineEnd h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+        
+        .letter {
+            max-width: 720px;
+            text-align: left;
+            line-height: 1.9;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 1.5s ease-in;
+        }
+        
+        .visible {
+            opacity: 1;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Floating emojis -->
+    <div class="floating-emoji">❤️</div>
+    <div class="floating-emoji">🤍</div>
+    <div class="floating-emoji">💛</div>
+    <div class="floating-emoji">💕</div>
+    <div class="floating-emoji">🤗</div>
+    <div class="floating-emoji">💌</div>
+
+    <!-- SCREEN 1 -->
+    <div class="section" id="s1">
+        <h1>Will you be my Valentine, Cheluu? 💗</h1>
+        <div class="buttons">
+            <button class="yes" onclick="openLove()">Yes</button>
+            <button class="no" id="noBtn">No</button>
+        </div>
+    </div>
+
+    <!-- SCREEN 2: Photos + captions -->
+    <div class="section hidden" id="s2">
+        <div class="photo-block">
+            <img src="images/pic1.jpg">
+            <div class="caption">You make my heart flutter 💕✨</div>
+        </div>
+        <div class="photo-block">
+            <img src="images/pic2.jpg">
+            <div class="caption">Life is sweeter with you 🍫❤️</div>
+        </div>
+        <div class="photo-block">
+            <img src="images/pic3.jpg">
+            <div class="caption">With you, every day shines 🌞💖</div>
+        </div>
+        <div class="photo-block">
+            <img src="images/pic4.jpg">
+            <div class="caption">Being with you is pure joy 😍💌</div>
+        </div>
+        <div class="photo-block">
+            <img src="images/pic5.jpg">
+            <div class="caption">Forever starts with you 💝💗</div>
+        </div>
+
+        <!-- Valentine line + letter at the end -->
+        <div id="valentineEnd">
+            <h1>THIS IS FOR YOU, MY VALENTINE 💕</h1>
+            <div class="letter" id="letter">Write your love letter here.</div>
+        </div>
+    </div>
+
+    <script>
+        function openLove() {
+            s1.style.display = "none";
+            s2.classList.remove("hidden");
+        }
+
+        /* No button escape */
+        const noBtn = document.getElementById("noBtn");
+
+        function moveNo() {
+            const x = Math.random() * 220 - 110;
+            const y = Math.random() * 120 - 60;
+            noBtn.style.transform = `translate(${x}px,${y}px)`;
+        }
+        noBtn.addEventListener("mouseenter", moveNo);
+        noBtn.addEventListener("touchstart", moveNo);
+
+        /* Scroll-triggered photo animation + letter */
+        const photoBlocks = document.querySelectorAll(".photo-block");
+        const valentineEnd = document.getElementById("valentineEnd");
+        const letter = document.getElementById("letter");
+        window.addEventListener("scroll", () => {
+            const scrollY = window.scrollY;
+            photoBlocks.forEach((pb) => {
+                const offset = pb.offsetTop;
+                if (scrollY + window.innerHeight * 0.7 > offset) {
+                    pb.classList.add("active");
+                }
+            });
+            // Valentine line + letter at end
+            if (scrollY + window.innerHeight * 0.7 > valentineEnd.offsetTop) {
+                valentineEnd.style.opacity = 1;
+                letter.classList.add("visible");
+            }
+        });
+
+        /* Floating emojis animation */
+        const emojis = document.querySelectorAll(".floating-emoji");
+        emojis.forEach(e => {
+            let x = Math.random() * window.innerWidth;
+            let y = Math.random() * window.innerHeight;
+            let dx = (Math.random() - 0.5) * 1.5;
+            let dy = (Math.random() - 0.5) * 1.5;
+            e.style.left = x + "px";
+            e.style.top = y + "px";
+
+            function move() {
+                x += dx;
+                y += dy;
+                if (x < 0 || x > window.innerWidth) dx *= -1;
+                if (y < 0 || y > window.innerHeight) dy *= -1;
+                e.style.left = x + "px";
+                e.style.top = y + "px";
+                requestAnimationFrame(move);
+            }
+            move();
+        });
+    </script>
+
+</body>
+
+</html>
